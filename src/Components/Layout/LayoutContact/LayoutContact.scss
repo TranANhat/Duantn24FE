@@ -1,0 +1,315 @@
+.LayoutContact {
+  .Feel__free {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // justify-content: center;
+    height: 80vh;
+    margin-top: 100px;
+
+    h3 {
+      font-size: 40px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: 300;
+    }
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      // margin-top: 30px;
+      margin-bottom: 80px;
+    }
+    form {
+      max-width: 1000px;
+      width: 100%;
+      height: auto;
+    }
+    .left {
+      display: flex;
+      gap: 40px;
+      width: 100%;
+      margin-bottom: 30px;
+
+      input {
+        width: 500px;
+        height: 40px;
+        background-color: transparent;
+        overflow: none;
+        padding: 5px;
+        outline: none;
+        color: #000;
+        border: none;
+        border-bottom: 1px solid #d7d7d7;
+        font-size: 17px;
+
+        &::placeholder {
+          color: #333;
+        }
+      }
+    }
+    textarea {
+      width: 1000px;
+      height: 70px;
+      outline: none;
+      border: none;
+      padding: 5px;
+      outline: none;
+      color: #000;
+      border: none;
+      border-bottom: 1px solid #d7d7d7;
+      font-size: 17px;
+      background-color: transparent;
+      resize: none;
+
+      &::placeholder {
+        color: #333;
+      }
+    }
+    .sendSubmit {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin-top: 30px;
+
+      .send {
+        width: 200px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #002c36;
+      }
+    }
+  }
+}
+/* styles.css */
+.appointment-section {
+  width: 100%;
+  min-height: 100vh;
+  background-image: url("https://calista.qodeinteractive.com/wp-content/uploads/2024/09/inner-img-7.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  // padding: 2rem;
+  margin: 100px 0;
+}
+
+.appointment-container {
+  width: 100%;
+  height: 100vh;
+  // max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  background: rgba(0, 0, 0, 0.5);
+
+  padding: 5rem;
+  color: white;
+  gap: 100px;
+}
+.appointment-form {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  height: 600px;
+  width: 90%;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.appointment-form h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+}
+
+.appointment-form p {
+  margin-bottom: 2rem;
+  opacity: 0.8;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.form-group {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 1rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input::placeholder,
+.form-group select::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: white;
+}
+
+.form-group select option {
+  background-color: #000;
+}
+
+.form-group .icon {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.7;
+}
+
+/* Hide default date picker icon */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.submit-btn {
+  background: transparent;
+  border: 1px solid white;
+  color: white;
+  padding: 0.8rem 2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.submit-btn:hover {
+  background: white;
+  color: black;
+}
+
+.working-hours h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+.working-hours {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hours-list .hours-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hours-list .hours-item:last-child {
+  border-bottom: none;
+}
+
+.working-hours .note {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  opacity: 0.7;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .appointment-container {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.appointment-form,
+.working-hours {
+  animation: fadeIn 0.8s ease-out;
+}
+.container {
+  width: 100%;
+  overflow: hidden;
+  margin-top: 50px;
+}
+
+.imageWrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  padding-right: 1rem;
+  min-width: max-content;
+}
+
+.imageContainer {
+  position: relative;
+  flex-shrink: 0;
+  width: 300px;
+  height: 300px;
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &.isText {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    width: 350px;
+  }
+}
+
+.imageText {
+  text-align: center;
+  padding: 1rem;
+}
+
+.imageTitle {
+  font-size: 2rem;
+  font-family: serif;
+  margin-bottom: 1rem;
+}
+
+.imageSvg {
+  width: 4rem;
+  height: 1rem;
+  margin: 0 auto;
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
