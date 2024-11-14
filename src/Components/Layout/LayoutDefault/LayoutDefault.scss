@@ -20,11 +20,13 @@
         height: 100%;
         object-fit: cover;
       }
+
       .svg {
         position: absolute;
         top: 60px;
         left: 60px;
       }
+
       .content-desc {
         display: flex;
         flex-direction: column;
@@ -42,19 +44,23 @@
           font-weight: 300;
           font-family: Arial, Helvetica, sans-serif;
         }
+
         p {
           color: #012151;
           width: 300px;
         }
       }
+
       &:nth-child(1) {
         background-color: #f9f9f7;
       }
+
       &:nth-child(3) {
         background-color: #e9f1fb;
       }
     }
   }
+
   .New_solutions {
     width: 100%;
     height: 100vh;
@@ -129,6 +135,7 @@
           font-size: 14px;
           cursor: pointer;
         }
+
         .svg-animation {
           position: absolute;
           top: -50%;
@@ -145,9 +152,11 @@
             0% {
               transform: translateY(0);
             }
+
             50% {
               transform: translateY(-20px);
             }
+
             100% {
               transform: translateY(0);
             }
@@ -157,6 +166,7 @@
     }
   }
 }
+
 .Allabout {
   width: 100%;
   height: 650px;
@@ -173,6 +183,7 @@
     margin-bottom: 20px;
   }
 }
+
 .carousel {
   display: flex;
   flex-direction: column;
@@ -230,6 +241,7 @@
         background-color: #555;
       }
     }
+
     & button:nth-child(2) {
       margin: 0 0.5rem;
       padding: 0.5rem 1rem;

@@ -125,9 +125,11 @@ $spacing-unit: 8px;
       .header__nav-toggle {
         color: #000 !important;
       }
+
       .header__nav-actions .header__nav-button {
         border-color: #000;
       }
+
       span,
       span::after {
         border-color: #000;
@@ -168,6 +170,7 @@ $spacing-unit: 8px;
         &:hover {
           color: darken($primary-color, 10%);
         }
+
         &:hover::after {
           width: 100%;
         }
@@ -224,6 +227,7 @@ $spacing-unit: 8px;
         background-color: #fff;
         transition: width 0.5s ease-in, height 0.5s ease-in;
       }
+
       .one::before {
         position: absolute;
         content: " ";
@@ -234,6 +238,7 @@ $spacing-unit: 8px;
         background-color: #fff;
         transition: width 0.5s ease-in, height 0.5s ease-in;
       }
+
       .two::before {
         position: absolute;
         content: " ";
@@ -244,6 +249,7 @@ $spacing-unit: 8px;
         background-color: #fff;
         transition: width 0.5s ease-in, height 0.5s ease-in;
       }
+
       .two::after {
         position: absolute;
         content: " ";
@@ -254,18 +260,23 @@ $spacing-unit: 8px;
         background-color: #fff;
         transition: width 0.5s ease-in, height 0.5s ease-in;
       }
+
       &:hover .one::before {
         height: 80%;
       }
+
       &:hover .two::before {
         width: 94%;
       }
+
       &:hover .one::after {
         height: 80%;
       }
+
       &:hover .two::after {
         width: 94%;
       }
+
       &:hover {
         background-color: transparent !important;
         color: #fff !important;
@@ -330,10 +341,12 @@ $spacing-unit: 8px;
         width: 30px;
         transform-origin: left; // Bắt đầu từ trái
       }
+
       50% {
         width: 0;
         transform-origin: left; // Giữ hiệu ứng từ trái
       }
+
       100% {
         width: 30px;
         transform-origin: left;
@@ -345,10 +358,12 @@ $spacing-unit: 8px;
         width: 50px;
         transform-origin: right;
       }
+
       50% {
         width: 0;
         transform-origin: right;
       }
+
       100% {
         width: 50px;
         transform-origin: right;
@@ -432,6 +447,7 @@ $spacing-unit: 8px;
           background-color: #fff;
           transition: width 0.5s ease-in, height 0.5s ease-in;
         }
+
         .one::before {
           position: absolute;
           content: " ";
@@ -442,6 +458,7 @@ $spacing-unit: 8px;
           background-color: #fff;
           transition: width 0.5s ease-in, height 0.5s ease-in;
         }
+
         .two::before {
           position: absolute;
           content: " ";
@@ -452,6 +469,7 @@ $spacing-unit: 8px;
           background-color: #fff;
           transition: width 0.5s ease-in, height 0.5s ease-in;
         }
+
         .two::after {
           position: absolute;
           content: " ";
@@ -462,18 +480,23 @@ $spacing-unit: 8px;
           background-color: #fff;
           transition: width 0.5s ease-in, height 0.5s ease-in;
         }
+
         &:hover .one::before {
           height: 80%;
         }
+
         &:hover .two::before {
           width: 96%;
         }
+
         &:hover .one::after {
           height: 80%;
         }
+
         &:hover .two::after {
           width: 96%;
         }
+
         &:hover {
           background-color: transparent !important;
           color: #fff !important;
@@ -535,6 +558,7 @@ $spacing-unit: 8px;
       }
     }
   }
+
   &__panel {
     position: fixed;
     top: 0;

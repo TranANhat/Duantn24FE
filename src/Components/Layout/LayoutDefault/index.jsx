@@ -1,6 +1,7 @@
 import Header from '../../Header/index';
 import { useEffect, useState } from 'react';
 import './LayoutDefault.scss';
+import MapComponent from '../../Map/map';
 
 export default function LayoutDefault() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -203,7 +204,7 @@ export default function LayoutDefault() {
                   <h2>Dịch vụ massage cổ vai gáy Đà Nẵng tại Sun Spa & Massage</h2>
                   <p>Tại Sun Spa & Massage, dưới đôi tay điêu luyện giàu kinh nghiệm của đội ngũ KTV, bạn hoàn toàn yên tâm tận hưởng và thư giãn cơ thể. Chúng tôi cung cấp đa dạng gói dịch vụ massage cổ vai gáy tại Đà Nẵng phù hợp với mọi đối tượng.
 
-Các bài massage cổ vai gáy đều được truyền thụ từ các bậc thầy, bác sĩ hàng đầu chuyên môn Y học cổ truyền. Massage từ thư giãn đến chuyên sâu kết hợp các thảo dược quý hiếm an toàn cho da và sức khỏe..</p>
+                    Các bài massage cổ vai gáy đều được truyền thụ từ các bậc thầy, bác sĩ hàng đầu chuyên môn Y học cổ truyền. Massage từ thư giãn đến chuyên sâu kết hợp các thảo dược quý hiếm an toàn cho da và sức khỏe..</p>
                   <button className="btn">Liên hệ ngay nhận ưu đãi lên đến 40%</button>
                   <div className="svg-animation">
                     <svg xmlns="http://www.w3.org/2000/svg" width="53.604" height="40.67"><g fill="#1a1718"><path d="m34.266 32.64-.1-.8c-.049-.379-1.145-9.372 3.906-15.2s14.108-6.011 14.491-6.016l.809-.011.1.8c.049.379 1.145 9.372-3.906 15.2s-14.108 6.011-14.491 6.016ZM52.49 11.627a24.367 24.367 0 0 0-5.159.787 14.9 14.9 0 0 0-12.136 13.994 24.355 24.355 0 0 0-.05 5.219 24.356 24.356 0 0 0 5.159-.788A14.9 14.9 0 0 0 52.44 16.846a24.355 24.355 0 0 0 .049-5.219ZM19.34 32.64l-.809-.011c-.383-.005-9.441-.192-14.492-6.016S.084 11.796.133 11.413l.1-.8.809.011c.383.005 9.441.193 14.492 6.016a15.157 15.157 0 0 1 2.757 4.8 21.512 21.512 0 0 1 1.11 4.85 24.914 24.914 0 0 1 .039 5.544ZM1.115 11.627a24.36 24.36 0 0 0 .05 5.219 14.9 14.9 0 0 0 12.136 13.993 24.358 24.358 0 0 0 5.16.788c.109-.967.869-9.085-3.68-14.331a17 17 0 0 0-8.507-4.882 24.367 24.367 0 0 0-5.159-.787ZM26.802 31.58l-.6-.536a27.035 27.035 0 0 1-3.918-4.581 23.378 23.378 0 0 1-2.542-4.772 16.453 16.453 0 0 1-1.154-5.9c0-8.368 7.3-14.975 7.613-15.252l.6-.539.6.539c.311.277 7.614 6.883 7.614 15.252a16.45 16.45 0 0 1-1.154 5.9 23.374 23.374 0 0 1-2.543 4.772 27.03 27.03 0 0 1-3.917 4.58Zm0-30.239c-.755.691-7.217 6.826-7.217 14.45 0 7.6 6.46 13.755 7.217 14.45.752-.69 7.218-6.846 7.218-14.45 0-7.626-6.464-13.761-7.218-14.45Z"></path><path d="M27.366 40.67h-1V12.629h1Z"></path><path d="m26.535 23.584-2.641-2.301.658-.754 2.641 2.3ZM27.122 17.25l-.512-.859 3.439-2.049.511.86ZM35.077 32.468l-.746-.666 10.505-11.759.746.666Z"></path><path d="m41.623 28.793-3.502-.058.017-1 3.5.058ZM41.925 23.636l-1.183-3.823.955-.3 1.183 3.828ZM18.529 32.468 8.024 20.709l.746-.666 10.5 11.758Z"></path><path d="m11.982 28.793-.017-1 3.503-.058.017 1ZM11.681 23.636l-.955-.3 1.182-3.819.955.3Z"></path></g></svg>
@@ -282,7 +283,10 @@ Các bài massage cổ vai gáy đều được truyền thụ từ các bậc t
               </div>
             </div>
             <div className="map">
-              <h1 style={{ textAlign: 'center' }}>bản đồ ở đây</h1>
+              <h1 style={{ textAlign: 'center' }}><MapComponent />
+
+
+              </h1>
             </div>
             <div className="container">
               <div className="imageWrapper">

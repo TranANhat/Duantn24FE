@@ -3,14 +3,11 @@ import { Phone, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { Calendar, DatePicker } from 'antd';
+import axios from 'axios';
 import DefaultLogo from '../../../assets/logo.png';
 import ScrolledLogo from '../../../assets/logo.png';
 
-const SERVICES = [
-  { id: 1, name: 'Cắt tóc nam', price: 100000 },
-  { id: 2, name: 'Nhuộm tóc', price: 500000 },
-  { id: 3, name: 'Uốn tóc', price: 400000 },
-];
+
 
 export default function LayoutBookNow() {
   const [isPanelOpen, setIsPanelOpen] = useState(false);
@@ -18,13 +15,59 @@ export default function LayoutBookNow() {
   const [logoSrc, setLogoSrc] = useState(DefaultLogo);
   const [showServiceModal, setShowServiceModal] = useState(false);
   const [showPaymentModal, setShowPaymentModal] = useState(false);
-  const [selectedService, setSelectedService] = useState(null);
+  const [selectedService, setSelectedService] = useState([]);
   const [paymentMethod, setPaymentMethod] = useState('');
   const [totalAmount, setTotalAmount] = useState(0);
+  const [services, setServices] = useState([]);  // danh sách dịch vụ
+  const [chosenService, setChosenService] = useState(null);  // dịch vụ đã chọn
+  const [name, setName] = useState('')
+  const [phone, setPhone] = useState('')
+  const [email, setEmail] = useState('')
+  const [sale, setSale] = useState('')
+  const [diachi, setDiachi] = useState('')
+
+  //load sp
+  async function handledichvu() {
+    try {
+      const res = await axios.get(`http://localhost:3000/api/dv/dichvu`);
+      setServices(res.data)
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    handledichvu();
+  }, [])
+  //them hd
+  const handleAddInvoice = async (event) => {
+    event.preventDefault();
+
+
+    const invoiceData = {
+      username: name,
+      phone: phone,
+      email: email,
+      diaChi: diachi,
+      phuongThucThanhToan: paymentMethod,
+      tongTien: totalAmount,
+      dichVu_id: selectedService?.id,
+      soLuong: 1,
+    };
+
+    try {
+
+      const response = await axios.post('http://localhost:3000/api/hd/hoadon', invoiceData);
+      alert(response.data.message || 'Đã thêm hóa đơn thành công!');
+    } catch (error) {
+      console.error("Lỗi khi thêm hóa đơn:", error);
+      alert("Đã xảy ra lỗi khi thêm hóa đơn. Vui lòng thử lại.");
+    }
+  };
 
   const handleServiceSelection = (service) => {
-    setSelectedService(service);
-    setTotalAmount(service.price);
+    setChosenService(service);
+    setSelectedService(service)
+    setTotalAmount(service.gia);
     setShowServiceModal(false);
   };
 
@@ -33,9 +76,9 @@ export default function LayoutBookNow() {
     setShowPaymentModal(false);
   };
 
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat('vi-VN').format(price) + ' đồng';
-  };
+  // const formatPrice = (price) => {
+  //   return new Intl.NumberFormat('vi-VN').format(price) + ' đồng';
+  // };
 
   const handleScroll = () => {
     if (window.scrollY > 50) {
@@ -164,25 +207,50 @@ export default function LayoutBookNow() {
 
                     <form className="booking-form">
                       <div className="form-group">
-                        <input type="text" placeholder="Tên" />
+                        <input
+                          type="text"
+                          placeholder="Tên"
+                          value={name}
+                          onChange={(e) => (setName(e.target.value))} />
                       </div>
 
                       <div className="form-group">
-                        <input type="tel" placeholder="SĐT" />
+                        <input
+                          type="tel"
+                          placeholder="SĐT"
+                          value={phone}
+                          onChange={(e) => (setPhone(e.target.value))} />
+
                       </div>
 
                       <div className="form-group">
-                        <input type="email" placeholder="Email" />
-                      </div>
+                        <input
+                          type="tel"
+                          placeholder="Địa chỉ"
+                          value={diachi}
+                          onChange={(e) => (setDiachi(e.target.value))} />
 
+                      </div>
                       <div className="form-group">
-                        <input type="text" placeholder="Mã giảm giá" />
+                        <input
+                          type="email"
+                          placeholder="Email"
+                          value={email}
+                          onChange={(e) => (setEmail(e.target.value))} />
                       </div>
 
                       <div className="form-group">
                         <input
                           type="text"
-                          value={totalAmount ? formatPrice(totalAmount) : ''}
+                          placeholder="Mã giảm giá"
+                          value={sale}
+                          onChange={(e) => (setSale(e.target.value))} />
+                      </div>
+
+                      <div className="form-group">
+                        <input
+                          type="text"
+                          value={`${totalAmount} đồng`}
                           placeholder="Tổng tiền"
                           readOnly
                         />
@@ -194,18 +262,19 @@ export default function LayoutBookNow() {
                             type="button"
                             onClick={() => setShowServiceModal(true)}
                           >
-                            {selectedService ? selectedService.name : 'Chọn dịch vụ'}
+                            {chosenService ? chosenService.tenDichVu
+                              : 'Chọn dịch vụ'}
                           </button>
                           <button
                             type="button"
-                            onClick={() => selectedService && setShowPaymentModal(true)}
+                            onClick={() => chosenService && setShowPaymentModal(true)}
                           >
                             {paymentMethod ?
                               `Thanh toán ${paymentMethod === 'atm' ? 'ATM' : 'tiền mặt'}` :
                               'Phương thức thanh toán'}
                           </button>
                         </div>
-                        <button type="submit" className="submit-button">
+                        <button onClick={handleAddInvoice} type="submit" className="submit-button">
                           Đặt lịch
                         </button>
                       </div>
@@ -225,14 +294,14 @@ export default function LayoutBookNow() {
           </button>
           <h3>Chọn dịch vụ</h3>
           <div className="service-list">
-            {SERVICES.map(service => (
+            {services.map((dv) => (
               <button
-                key={service.id}
+                key={dv.id}
                 className="service-item"
-                onClick={() => handleServiceSelection(service)}
+                onClick={() => handleServiceSelection(dv)}
               >
-                <span>{service.name}</span>
-                <span className="service-price">{formatPrice(service.price)}</span>
+                <span>{dv.tenDichVu}</span>
+                <span className="service-price">{dv.gia}</span>
               </button>
             ))}
           </div>
@@ -256,8 +325,8 @@ export default function LayoutBookNow() {
           {selectedService && (
             <div className="summary">
               <div className="total">
-                <span>Tổng tiền:</span>
-                <span>{formatPrice(totalAmount)}</span>
+                <span>Tổng tiền: </span>
+                <span>{totalAmount}</span>
               </div>
             </div>
           )}

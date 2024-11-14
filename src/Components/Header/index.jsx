@@ -12,7 +12,11 @@ const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [logoSrc, setLogoSrc] = useState(DefaultLogo);
 
-
+  const activebar = {
+    borderBottom: "1px solid white",
+    color: "white",
+    padding: "5px 0px"
+  };
 
   const slides = [
     {
@@ -27,7 +31,7 @@ const Header = () => {
       id: 2,
       url: 'https://calista.qodeinteractive.com/wp-content/uploads/2024/06/h1-img-1.jpg',
       title: <>
-       Sun spa  <em> uy tín, chất lượng cao.</em> Tạo nên thương hiệu <em></em>
+        Sun spa  <em> uy tín, chất lượng cao.</em> Tạo nên thương hiệu <em></em>
       </>,
       cta: 'Xem thêm'
     },
@@ -35,7 +39,7 @@ const Header = () => {
       id: 3,
       url: 'https://calista.qodeinteractive.com/wp-content/uploads/2024/07/h1-img-16.jpg',
       title: <>
-     Đặt lịch ngay <em> với nhiều ưu đãi</em> giá học sinh, sinh viên <em></em>
+        Đặt lịch ngay <em> với nhiều ưu đãi</em> giá học sinh, sinh viên <em></em>
       </>,
       cta: 'Đặt ngay '
     }
@@ -46,6 +50,9 @@ const Header = () => {
     if (window.scrollY > 50) {
       setIsScrolled(true);
       setLogoSrc(ScrolledLogo);
+
+
+
     } else {
       setIsScrolled(false);
       setLogoSrc(DefaultLogo);
@@ -118,7 +125,7 @@ const Header = () => {
       <nav className={`header__nav ${isScrolled ? 'scrolled' : ''}`}>
         <div className="header__nav-container">
           <div className="header__nav-menu">
-            <NavLink to="/">Home</NavLink>
+            <NavLink style={({ isActive }) => isActive ? activebar : {}} to="/">Home</NavLink>
             <NavLink to="/service">Service</NavLink>
             <NavLink to="/introduce">Introduce</NavLink>
             <NavLink to="/contact">Contact</NavLink>

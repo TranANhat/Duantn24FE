@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import DefaultLogo from '../../../assets/logo.png';
 import ScrolledLogo from '../../../assets/logo.png';
+import './LayoutService.scss'
 
 export default function LayoutService() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -11,6 +12,12 @@ export default function LayoutService() {
   const [logoSrc, setLogoSrc] = useState(DefaultLogo);
   const [selectedService, setSelectedService] = useState(null);
 
+
+  const activebar = {
+    borderBottom: "1px solid white",
+    color: "white",
+    padding: "5px 0px"
+  };
   const handleScroll = () => {
     if (window.scrollY > 50) {
       setIsScrolled(true);
@@ -69,7 +76,7 @@ export default function LayoutService() {
             <div className="header__nav-container">
               <div className="header__nav-menu">
                 <NavLink to="/">Home</NavLink>
-                <NavLink to="/service">Service</NavLink>
+                <NavLink style={({ isActive }) => isActive ? activebar : {}} to="/service">Service</NavLink>
                 <NavLink to="/introduce">Introduce</NavLink>
                 <NavLink to="/contact">Contact</NavLink>
                 <NavLink to="/lookup">Lookup</NavLink>
@@ -173,12 +180,13 @@ export default function LayoutService() {
                 <hr />
                 <p>(90 phút) {time90}</p>
                 <hr />
+                {selectedService === title && <p> Mô tả : {title}</p>}
                 <div className="service-buttons">
                   <button className="btn-call">Gọi ngay</button>
                   <button className="btn-book" onClick={() => handleToggle(title)}>Đặt phòng</button>
                 </div>
               </div>
-              {selectedService === title && <DVCT />}
+
             </div>
           ))}
         </div>

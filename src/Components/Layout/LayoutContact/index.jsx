@@ -15,6 +15,12 @@ export default function LayoutContact() {
     treatment: ''
   });
 
+  const activebar = {
+    borderBottom: "1px solid white",
+    color: "white",
+    padding: "5px 0px"
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(formData);
@@ -111,7 +117,7 @@ export default function LayoutContact() {
               <NavLink to="/">Home</NavLink>
               <NavLink to="/service">Service</NavLink>
               <NavLink to="/introduce">Introduce</NavLink>
-              <NavLink to="/contact">Contact</NavLink>
+              <NavLink style={({ isActive }) => isActive ? activebar : {}} to="/contact">Contact</NavLink>
               <NavLink to="/lookup">Lookup</NavLink>
             </div>
 
@@ -294,7 +300,7 @@ export default function LayoutContact() {
             </div>
 
             <p className="note">
-          * Tại sun spa chúng tôi sẽ phục vụ các bạn hài lòng nhất có thể, nếu nhân viên có thái độ không tốt xin liên hệ với chúng tôi *
+              * Tại sun spa chúng tôi sẽ phục vụ các bạn hài lòng nhất có thể, nếu nhân viên có thái độ không tốt xin liên hệ với chúng tôi *
             </p>
           </div>
         </div>

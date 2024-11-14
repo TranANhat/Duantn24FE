@@ -13,6 +13,11 @@ export default function LayoutLookUp() {
   const [searchHistory, setSearchHistory] = useState([]);
   let stt = 1;
 
+  const activebar = {
+    borderBottom: "1px solid white",
+    color: "white",
+    padding: "5px 0px"
+  };
 
   const handleScroll = () => {
     if (window.scrollY > 50) {
@@ -91,7 +96,7 @@ export default function LayoutLookUp() {
               <NavLink to="/service">Service</NavLink>
               <NavLink to="/introduce">Introduce</NavLink>
               <NavLink to="/contact">Contact</NavLink>
-              <NavLink to="/lookup">Lookup</NavLink>
+              <NavLink style={({ isActive }) => isActive ? activebar : {}} to="/lookup">Lookup</NavLink>
             </div>
 
             <div className={`header__nav-logo ${isScrolled ? 'scrolled' : ''}`}>
