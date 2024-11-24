@@ -371,10 +371,43 @@ $spacing-unit: 8px;
     }
   }
 
+  .thuonghiiu {
+    position: absolute;
+    z-index: 999;
+    color: black;
+    top: 10%;
+    left: 40%;
+
+    svg path {
+      fill: transparent;
+      stroke-width: 0.1;
+      stroke-dasharray: 60;
+      stroke-dashoffset: 60;
+      stroke: white;
+      animation: textAnimation 4s ease-in-out 1 forwards;
+    }
+
+    @keyframes textAnimation {
+      0% {
+        stroke-dashoffset: 60;
+      }
+
+      100% {
+        stroke-dashoffset: 0;
+        fill: white;
+      }
+
+    }
+
+
+  }
+
   // Carousel
   &__carousel {
     position: relative;
     height: 100%;
+
+
 
     &-slide {
       @include absolute-full;

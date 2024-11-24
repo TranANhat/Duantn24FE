@@ -25,6 +25,7 @@ export default function LayoutBookNow() {
   const [email, setEmail] = useState('')
   const [sale, setSale] = useState('')
   const [diachi, setDiachi] = useState('')
+  const [bookingDate, setBookingDate] = useState(null);
 
   //load sp
   async function handledichvu() {
@@ -38,9 +39,25 @@ export default function LayoutBookNow() {
   useEffect(() => {
     handledichvu();
   }, [])
+
+  const handleDateChange = (date) => {
+    console.log(date);  // Kiểm tra giá trị ngày nhận được
+    if (date) {
+      // Đảm bảo rằng date là đối tượng moment hoặc dayjs
+      const formattedDate = date.format('YYYY-MM-DD');  // Chỉ lấy phần ngày
+      setBookingDate(formattedDate);  // Lưu ngày đã được định dạng
+    }
+  };
   //them hd
   const handleAddInvoice = async (event) => {
     event.preventDefault();
+
+
+    if (!name || !phone || !email || !diachi || !chosenService || !bookingDate) {
+      alert("Vui lòng điền đầy đủ thông tin.");
+      return;  // Ngừng thực hiện nếu thiếu thông tin
+    }
+
 
 
     const invoiceData = {
@@ -50,12 +67,12 @@ export default function LayoutBookNow() {
       diaChi: diachi,
       phuongThucThanhToan: paymentMethod,
       tongTien: totalAmount,
-      dichVu_id: selectedService?.id,
+      dichVu_id: chosenService.id,
       soLuong: 1,
+      ngayHen: bookingDate,
     };
 
     try {
-
       const response = await axios.post('http://localhost:3000/api/hd/hoadon', invoiceData);
       alert(response.data.message || 'Đã thêm hóa đơn thành công!');
     } catch (error) {
@@ -99,6 +116,17 @@ export default function LayoutBookNow() {
 
   const togglePanel = () => {
     setIsPanelOpen((prev) => !prev);
+  };
+
+  //sale
+  const applySaleCode = () => {
+    if (sale === 'SALE20') {
+      const discount = totalAmount * 0.2;  // Giảm giá 20%
+      setTotalAmount(totalAmount - discount);
+      console.log('Áp dụng mã giảm giá thành công!');
+    } else {
+      console.log('Mã giảm giá không hợp lệ');
+    }
   };
 
   return (
@@ -197,8 +225,16 @@ export default function LayoutBookNow() {
               <div className="header__carousel-content">
                 <div className="header__carousel-content-wrapper">
                   <div className="calendar-section">
-                    <Calendar fullscreen={false} />
-                    <DatePicker />
+                    <Calendar fullscreen={false}
+                      selected={bookingDate}
+                      onChange={handleDateChange}
+                      placeholder="Chọn ngày hẹn" />
+                    <DatePicker
+                      selected={bookingDate}
+                      onChange={handleDateChange}
+                      placeholder="Chọn ngày hẹn"
+
+                    />
                   </div>
                 </div>
                 <div className="working">
@@ -244,7 +280,13 @@ export default function LayoutBookNow() {
                           type="text"
                           placeholder="Mã giảm giá"
                           value={sale}
-                          onChange={(e) => (setSale(e.target.value))} />
+                          onChange={(e) => {
+                            setSale(e.target.value);
+                            applySaleCode();  // Áp dụng giảm giá khi thay đổi mã
+                          }}
+
+                        />
+
                       </div>
 
                       <div className="form-group">
