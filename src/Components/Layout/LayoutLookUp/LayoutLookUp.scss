@@ -54,17 +54,31 @@
   }
 
   .table-container {
-    overflow-x: auto;
+    width: 1000px;
+    margin-left: -120px;
+ 
 
     table {
       width: 100%;
       border-collapse: collapse;
+      
 
       th,
       td {
+        
+        justify-items: center;
         border: 1px solid #ddd;
         padding: 12px;
-        text-align: left;
+        text-align: center;
+        .titledg{
+          width: 120px;
+          margin-top: 10px;
+          background-color: #ff2200;
+          padding: 5px 5px 5px 5px;
+          &:hover {
+            background-color: rgb(59, 0, 0);
+          }
+        }
       }
 
       th {
@@ -75,6 +89,88 @@
       tr:nth-child(even) {
         background-color: #f9f9f9;
       }
+    }
+
+    .table-comment {
+      width: 100%;
+      min-height: 100px;
+      border: 1px solid #ddd;
+      display: flex;
+
+      .view-comment {
+        padding: 10px 10px 10px 10px;
+        color: #000000;
+
+        .backg {
+          background-color: #cbcbcb;
+          padding: 10px 10px 10px 10px;
+          min-height: 100px;
+          border-radius: 10px;
+          width: 888px;
+        }
+        p {
+          font-size: 15px;
+        }
+      }
+
+      .handle-comment {
+        padding: 0px 20px 20px 20px;
+
+        button {
+          margin-top: 20px;
+
+          border-radius: 10px;
+          width: 50px;
+          height: 30px;
+          background: #b90000;
+          &:hover {
+            background: #ff0000;
+          }
+        }
+      }
+    }
+
+    .ctm-comment {
+      width: 100%;
+      border: 1px solid #ddd;
+      display: flex;
+
+      .form-input {
+        padding: 10px 10px 10px 10px;
+
+        textarea {
+          width: 888px;
+          min-height: 150px;
+          padding: 10px 10px 10px 10px;
+          background: none;
+          color: #000;
+          background-color: #cbcbcb;
+          border: none;
+          font-size: x-large;
+        }
+        
+      }
+      .handle-form {
+        padding: 0px 10px 0px 20px;
+        .dong-button {
+          color: #000;
+          border: none;
+          background: none;
+          font-size: 20px;
+          margin-top: 10px;
+          
+        }
+        .luu-button {
+          color: #ffffff;
+          text-align: center;
+          border: none;
+          background-color: darkcyan;
+          font-size: 20px;
+          padding: 0px 5px 0px 5px;
+          margin-top: 100px;
+        }
+      }
+
     }
   }
 }
