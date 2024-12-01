@@ -6,6 +6,7 @@ import { Calendar, DatePicker } from "antd";
 import axios from "axios";
 import DefaultLogo from "../../../assets/logo.png";
 import ScrolledLogo from "../../../assets/logo.png";
+import moment from 'moment';
 
 export default function LayoutBookNow() {
   const [isPanelOpen, setIsPanelOpen] = useState(false);
@@ -24,6 +25,8 @@ export default function LayoutBookNow() {
   const [sale, setSale] = useState("");
   const [diachi, setDiachi] = useState("");
   const [discountPrice, setDiscountPrice] = useState(null);
+  const [bookingDate, setBookingDate] = useState(null);
+
 
   const applyDiscount = async () => {
     if (!sale) {
@@ -72,20 +75,41 @@ export default function LayoutBookNow() {
   useEffect(() => {
     handledichvu();
   }, []);
+
+  const handleDateChange = (date) => {
+    console.log(date);
+    if (date) {
+
+      const formattedDate = date.format('YYYY-MM-DD');
+      setBookingDate(formattedDate);
+    }
+  };
+
+  //không cho chọn ngày quá khứ
+  const disablePastDates = (current) => {
+
+    return current && current < moment().startOf('day');
+  };
+
+
   //them hd
   const handleAddInvoice = async (event) => {
     event.preventDefault();
-
+    if (!name || !phone || !email || !diachi || !chosenService || !bookingDate) {
+      alert("Vui lòng điền đầy đủ thông tin.");
+      return;  // Ngừng thực hiện nếu thiếu thông tin
+    }
     const invoiceData = {
       username: name,
       phone: phone,
       email: email,
       diaChi: diachi,
-phuongThucThanhToan: paymentMethod,
+      phuongThucThanhToan: paymentMethod,
       tongTien: totalAmount,
       dichVu_id: selectedService?.id,
       maKhuyenMai: sale || null, // Gửi mã khuyến mãi vào API nếu có
       soLuong: 1,
+      ngayHen: bookingDate,
     };
 
     try {
@@ -172,7 +196,7 @@ phuongThucThanhToan: paymentMethod,
               <div className='header__nav-actions'>
                 <NavLink to='/booknow'>
                   <button className='header__nav-button'>
-BOOK NOW
+                    BOOK NOW
                     <span className='one'></span>
                     <span className='two'></span>
                   </button>
@@ -223,8 +247,17 @@ BOOK NOW
               <div className='header__carousel-content'>
                 <div className='header__carousel-content-wrapper'>
                   <div className='calendar-section'>
-                    <Calendar fullscreen={false} />
-                    <DatePicker />
+                    <Calendar fullscreen={false}
+                      selected={bookingDate}
+                      onChange={handleDateChange}
+                      disabledDate={disablePastDates}
+                      placeholder="Chọn ngày hẹn" />
+                    <DatePicker
+                      selected={bookingDate}
+                      onChange={handleDateChange}
+                      placeholder="Chọn ngày hẹn"
+                      disabledDate={disablePastDates}
+                    />
                   </div>
                 </div>
                 <div className='working'>
@@ -243,26 +276,24 @@ BOOK NOW
                       <div className='form-group'>
                         <input type='tel' placeholder='Địa chỉ' value={diachi} onChange={(e) => setDiachi(e.target.value)} />
                       </div>
-<div className='form-group'>
+                      <div className='form-group'>
                         <input type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)} />
                       </div>
 
-                      <div className='form-group'>
+                      <div className='form-group discount'>
                         <input type='text' placeholder='Mã giảm giá' value={sale} onChange={(e) => setSale(e.target.value)} />
-                        <button type='button' onClick={applyDiscount}>
+                        <button type='button' className="btn" onClick={applyDiscount}>
                           Áp dụng mã
                         </button>
                       </div>
 
-                      {discountPrice && <p>Số tiền giảm: {formatPrice(discountPrice.toFixed(0))} </p>}
 
-                      <div className='form-group'>
-                        <input
-                          type='text'
-                          value={`${formatPrice(totalAmount.toFixed(0))} `} // Sử dụng toFixed(0) để hiển thị tiền mà không có phần thập phân
-                          placeholder='Tổng tiền'
-                          readOnly
-                        />
+
+                      <div className='form-group total'>
+                        {discountPrice && <p className='discount-info'>Số tiền giảm: {formatPrice(discountPrice.toFixed(0))} </p>}
+                        <div className="total-amount">
+                          Tổng tiền :  {`${formatPrice(totalAmount.toFixed(0))} `}
+                        </div>
                       </div>
 
                       <div className='action-container'>
@@ -308,10 +339,10 @@ BOOK NOW
           <button className='modal-close' onClick={() => setShowPaymentModal(false)}>
             <X size={24} />
           </button>
-<h3>Chọn phương thức thanh toán</h3>
+          <h3>Chọn phương thức thanh toán</h3>
           <div className='payment-options'>
             <button onClick={() => handlePaymentSelection("atm")}>Thanh toán ATM</button>
-            <button onClick={() => handlePaymentSelection("cash")}>Thanh toán tiền mặt</button>
+            <button onClick={() => handlePaymentSelection("Tiền mặt")}>Thanh toán tiền mặt</button>
           </div>
           {selectedService && (
             <div className='summary'>
