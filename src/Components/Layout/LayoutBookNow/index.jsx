@@ -95,10 +95,15 @@ export default function LayoutBookNow() {
   //them hd
   const handleAddInvoice = async (event) => {
     event.preventDefault();
+
+
     if (!name || !phone || !email || !diachi || !chosenService || !bookingDate) {
       alert("Vui lòng điền đầy đủ thông tin.");
       return;  // Ngừng thực hiện nếu thiếu thông tin
     }
+
+
+
     const invoiceData = {
       username: name,
       phone: phone,
@@ -106,15 +111,15 @@ export default function LayoutBookNow() {
       diaChi: diachi,
       phuongThucThanhToan: paymentMethod,
       tongTien: totalAmount,
-      dichVu_id: selectedService?.id,
-      maKhuyenMai: sale || null, // Gửi mã khuyến mãi vào API nếu có
+      dichVu_id: chosenService.id,
+      maKhuyenMai: sale || null,
       soLuong: 1,
       ngayHen: bookingDate,
     };
 
     try {
-      const response = await axios.post("http://localhost:3000/api/hd/hoadon", invoiceData);
-      alert(response.data.message || "Đã thêm hóa đơn thành công!");
+      const response = await axios.post('http://localhost:3000/api/hd/hoadon', invoiceData);
+      alert(response.data.message || 'Đã thêm hóa đơn thành công!');
     } catch (error) {
       console.error("Lỗi khi thêm hóa đơn:", error);
       alert("Đã xảy ra lỗi khi thêm hóa đơn. Vui lòng thử lại.");
@@ -270,7 +275,10 @@ export default function LayoutBookNow() {
                       </div>
 
                       <div className='form-group'>
-                        <input type='tel' placeholder='SĐT' value={phone} onChange={(e) => setPhone(e.target.value)} />
+                        <input type='tel'
+                          placeholder='SĐT'
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)} />
                       </div>
 
                       <div className='form-group'>

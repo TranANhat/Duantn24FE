@@ -13,7 +13,7 @@ export default function LayoutService() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [logoSrc, setLogoSrc] = useState(DefaultLogo);
   const [selectedService, setSelectedService] = useState(null);
-  const [listService,SetlistService] = useState([])
+  const [listService, SetlistService] = useState([])
 
   const activebar = {
     borderBottom: "1px solid white",
@@ -57,16 +57,16 @@ export default function LayoutService() {
 
   async function LoadService() {
     try {
-        const res = await axios.get(`http://localhost:3000/api/dv/dichvu`);
-        SetlistService(res.data);
+      const res = await axios.get(`http://localhost:3000/api/dv/dichvu`);
+      SetlistService(res.data);
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
-}
+  }
 
-useEffect(() => {
-  LoadService();
-}, []);
+  useEffect(() => {
+    LoadService();
+  }, []);
 
 
   return (
@@ -168,45 +168,45 @@ useEffect(() => {
                   </div>
                 </div>
               </div>
-              ))}
+            ))}
 
-              <div className="header__carousel-indicators">
-                {slides.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentSlide(index)}
-                    className={`header__carousel-indicators-dot ${index === currentSlide ? 'active' : ''}`}
-                  />
-                ))}
-              </div>
+            <div className="header__carousel-indicators">
+              {slides.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`header__carousel-indicators-dot ${index === currentSlide ? 'active' : ''}`}
+                />
+              ))}
             </div>
           </div>
-  
-          <div className="service-container">
-            {listService.map((dv) => (
-              <div key={dv.id} className="service-card">
-                <img src={`http://localhost:3000${dv.hinhanh}`} alt="Service Image" />
-                <div className="service-content">
-                  <h3>{dv.tenDichVu}</h3>
-                  <hr />
-                  <p>(90 phút) {dv.gia}</p>
-                  <hr />
-                  {selectedService === dv.id && <p> Mô tả : {dv.moTa}</p>}
-                  <div className="service-buttons">
-                    <button className="btn-call">Gọi ngay</button>
-                    <button className="btn-book" onClick={() => handleToggle(dv.id)}>Mô tả</button>
-                  </div>
-                </div>
-  
-              </div>
-            ))}
-          </div>
         </div>
-      </>
-    );
-  }
-  
-  // Placeholder component for DVCT
-  function DVCT() {
-    return <div className="modal">Booking details...</div>;
-  }
+
+        <div className="service-container">
+          {listService.map((dv) => (
+            <div key={dv.id} className="service-card">
+              <img src={`http://localhost:3000${dv.hinhanh}`} alt="Service Image" />
+              <div className="service-content">
+                <h3>{dv.tenDichVu}</h3>
+                <hr />
+                <p>(90 phút) {dv.gia}</p>
+                <hr />
+                {selectedService === dv.id && <p> Mô tả : {dv.moTa}</p>}
+                <div className="service-buttons">
+                  <button className="btn-call">Gọi ngay</button>
+                  <button className="btn-book" onClick={() => handleToggle(dv.id)}>Mô tả</button>
+                </div>
+              </div>
+
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  );
+}
+
+// Placeholder component for DVCT
+function DVCT() {
+  return <div className="modal">Booking details...</div>;
+}

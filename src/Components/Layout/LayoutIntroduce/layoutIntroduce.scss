@@ -312,6 +312,7 @@ $spacing-unit: 8px;
         }
       }
     }
+
     &__panel {
       position: fixed;
       top: 0;
@@ -430,6 +431,7 @@ $spacing-unit: 8px;
     }
   }
 }
+
 .header__carousel-content-wrapper {
   max-width: 1000px;
 
@@ -457,20 +459,44 @@ $spacing-unit: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 700px;
+    width: 100%;
+    max-width: 700px;
     font-size: 35px;
     font-weight: 300;
     text-align: center;
     padding-top: 100px;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+    @media (max-width: 768px) {
+      font-size: 28px;
+      padding-top: 80px;
+    }
+
+    @media (max-width: 576px) {
+      font-size: 24px;
+      padding-top: 60px;
+    }
   }
+
   &-content {
     width: 100%;
     height: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    // background-color: #000;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr); // Giảm còn 2 cột
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr; // Giảm còn 1 cột
+      gap: 15px;
+    }
+
+    @media (max-width: 576px) {
+      gap: 10px;
+    }
 
     &-background {
       width: 100%;
@@ -479,20 +505,40 @@ $spacing-unit: 8px;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      text-align: center;
 
       .title {
         font-size: 30px;
         font-weight: 300;
         margin-top: 10px;
+
+        @media (max-width: 768px) {
+          font-size: 24px;
+        }
+
+        @media (max-width: 576px) {
+          font-size: 20px;
+        }
       }
+
       .desc {
         font-size: 15px;
         font-weight: 300;
         margin-top: 10px;
+
+        @media (max-width: 768px) {
+          font-size: 14px;
+        }
+
+        @media (max-width: 576px) {
+          font-size: 12px;
+        }
       }
     }
   }
 }
+
+
 .introduct__user {
   &-grid {
     display: grid;
@@ -502,6 +548,7 @@ $spacing-unit: 8px;
     max-width: 1500px;
     margin: 0 auto;
   }
+
   &-background {
     display: flex;
     flex-direction: column;
@@ -525,6 +572,7 @@ $spacing-unit: 8px;
         height: 100%;
         object-fit: cover;
       }
+
       &-hover {
         position: absolute;
         bottom: 40px;
@@ -541,6 +589,7 @@ $spacing-unit: 8px;
         opacity: 0;
         transition: opacity 0.45s ease-in-out;
       }
+
       .list {
         width: 90%;
         display: flex;
@@ -557,16 +606,19 @@ $spacing-unit: 8px;
       }
     }
   }
+
   &-fullname {
     h3 {
       font-size: 30px;
       font-weight: 400;
     }
+
     p {
       text-align: center;
     }
   }
 }
+
 .Allabout {
   width: 100%;
   height: 650px;
@@ -584,6 +636,7 @@ $spacing-unit: 8px;
     margin-bottom: 20px;
   }
 }
+
 .carousel {
   display: flex;
   flex-direction: column;
@@ -643,6 +696,7 @@ $spacing-unit: 8px;
         background-color: #555;
       }
     }
+
     & button:nth-child(2) {
       margin: 0 0.5rem;
       padding: 0.5rem 1rem;
@@ -661,4 +715,302 @@ $spacing-unit: 8px;
       }
     }
   }
+
+  // Cài đặt mặc định (mobile-first)
+
+  // Đối với màn hình nhỏ (dưới 768px)
+  @media (max-width: 768px) {
+    .header {
+      height: auto;
+
+      &__nav {
+        padding: $spacing-unit * 2;
+
+        &-menu {
+          flex-direction: column;
+          gap: $spacing-unit * 2;
+
+          a {
+            font-size: 12px;
+          }
+        }
+
+        &-logo img {
+          height: 100px;
+          width: 100px;
+        }
+      }
+
+      &__carousel {
+        &-content {
+          padding: 0 $spacing-unit;
+
+          .header__carousel-content-wrapper-title {
+            font-size: 36px;
+          }
+        }
+      }
+    }
+
+    .introduct__service {
+      &-content {
+        grid-template-columns: 1fr;
+      }
+
+      &__title {
+        width: 90%;
+        font-size: 24px;
+      }
+    }
+
+    .introduct__user {
+      &-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      &-background {
+        height: 300px;
+      }
+    }
+
+    .carousel {
+      .slide-container {
+        width: 100%;
+        padding: 0.5rem;
+
+        img {
+          width: 100px;
+          height: 100px;
+        }
+
+        h3 {
+          font-size: 18px;
+        }
+
+        p {
+          width: 100%;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  // Đối với màn hình trung bình (từ 768px đến 1024px)
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .header {
+      &__nav {
+        padding: $spacing-unit * 2;
+
+        &-menu {
+          gap: $spacing-unit * 3;
+        }
+
+        &-logo img {
+          height: 120px;
+          width: 120px;
+        }
+      }
+
+      &__carousel {
+        &-content {
+          padding: 0 $spacing-unit * 2;
+
+          .header__carousel-content-wrapper-title {
+            font-size: 42px;
+          }
+        }
+      }
+    }
+
+    .introduct__service {
+      &-content {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .introduct__user {
+      &-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  }
+
+  // Đối với màn hình lớn (trên 1024px)
+  @media (min-width: 1025px) {
+    .header__nav {
+      padding: $spacing-unit * 4;
+    }
+
+    .introduct__service {
+      &-content {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .introduct__user {
+      &-grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    .carousel {
+      .slide-container {
+        width: 800px;
+
+        img {
+          width: 200px;
+          height: 150px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 576px) {
+
+    // Header
+    .header {
+      height: auto;
+      padding: $spacing-unit;
+
+      &__topbar {
+        padding: $spacing-unit 0;
+        font-size: 12px;
+
+        &-container {
+          flex-direction: column;
+          gap: $spacing-unit * 2;
+        }
+      }
+
+      &__nav {
+        padding: $spacing-unit;
+
+        &-menu {
+          flex-direction: column;
+          gap: $spacing-unit * 2;
+
+          a {
+            font-size: 12px;
+          }
+        }
+
+        &-logo img {
+          height: 80px;
+          width: 80px;
+        }
+      }
+    }
+
+    // Carousel
+    .header__carousel {
+      &-content {
+        padding: 0 $spacing-unit;
+        font-size: 16px;
+
+        &-button {
+          padding: $spacing-unit $spacing-unit * 2;
+          font-size: 12px;
+        }
+      }
+
+      img {
+        height: auto;
+        width: 100%;
+      }
+    }
+
+    // Introduction Service
+    .introduct__service {
+      &__title {
+        font-size: 20px;
+        width: 90%;
+      }
+
+      &-content {
+        grid-template-columns: 1fr;
+        gap: $spacing-unit;
+      }
+
+      &-background .title {
+        font-size: 20px;
+      }
+
+      &-background .desc {
+        font-size: 14px;
+      }
+    }
+
+    // User Section
+    .introduct__user {
+      &-grid {
+        grid-template-columns: 1fr;
+      }
+
+      &-background {
+        height: 300px;
+
+        .content-user-hover {
+          padding: $spacing-unit;
+          font-size: 12px;
+        }
+      }
+    }
+
+    // Carousel Section
+    .carousel {
+      .slide-container {
+        width: 100%;
+        padding: 1rem 0.5rem;
+
+        img {
+          width: 100px;
+          height: auto;
+        }
+
+        h3 {
+          font-size: 18px;
+        }
+
+        p {
+          font-size: 14px;
+        }
+      }
+
+      .controls {
+        button {
+          padding: 0.3rem 0.8rem;
+        }
+      }
+    }
+
+    // Panel Menu
+    .header__panel {
+      width: 100%;
+      padding: $spacing-unit;
+
+      &-contents {
+        padding: $spacing-unit * 2;
+      }
+
+      &-close svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      &-logo img {
+        width: 120px;
+        height: auto;
+      }
+    }
+
+    // Allabout Section
+    .Allabout {
+      h2 {
+        font-size: 24px;
+        width: 90%;
+      }
+    }
+  }
+
+
 }
